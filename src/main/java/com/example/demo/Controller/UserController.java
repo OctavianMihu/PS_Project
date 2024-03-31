@@ -23,5 +23,21 @@ public class UserController {
     public List<User> getAllUsers(){
         return userService.getAllUsers();
     }
+    @DeleteMapping("/deleteUser")
+    public String deleteUser(@RequestBody int id){
+//        int ID;
+//        try{
+//            ID = Integer.parseInt(id);
+//        }catch(Exception e){
+//            e.printStackTrace();
+//            return "id not a number";
+//        }
+        if(userService.deleteUser(id)){
+            return "User deleted successfully";
+        }else{
+            return "Could not find user";
+        }
+
+    }
 
 }
