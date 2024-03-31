@@ -18,20 +18,42 @@ import java.util.Optional;
 public class DriverServiceImpl implements DriverService{
     @Autowired
     private DriverRepository driverRepository;
+    /**
+     * Saves a driver entity.
+     *
+     * @param driver The driver object to be saved.
+     * @return The saved driver object.
+     */
     @Override
     public Driver saveDriver(Driver driver) {
         return driverRepository.save(driver);
     }
-
+    /**
+     * Retrieves a list of all drivers.
+     *
+     * @return A list containing all drivers.
+     */
     @Override
     public List<Driver> getAllDrivers() {
         return driverRepository.findAll();
     }
+    /**
+     * Finds a driver by their ID.
+     *
+     * @param id The ID of the driver to find.
+     * @return An Optional containing the driver if found, otherwise empty.
+     */
     @Override
     public Optional<Driver> findByID(int id) {
         return driverRepository.findById(id);
     }
 
+    /**
+     * Deletes a driver by their ID.
+     *
+     * @param id The ID of the driver to delete.
+     * @return True if the driver was successfully deleted, false otherwise.
+     */
     @Override
     public boolean deleteDriver(int id) {
         Optional<Driver> d = findByID(id);

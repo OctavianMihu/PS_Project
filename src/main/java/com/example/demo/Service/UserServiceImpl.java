@@ -17,19 +17,44 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
+    /**
+     * Saves a user entity.
+     *
+     * @param user The user object to be saved.
+     * @return The saved user object.
+     */
     @Override
     public User saveUser(User user) {
         return userRepository.save(user);
     }
 
+    /**
+     * Retrieves a list of all users.
+     *
+     * @return A list containing all users.
+     */
     @Override
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
+    /**
+     * Finds a user by their ID.
+     *
+     * @param id The ID of the user to find.
+     * @return An Optional containing the user if found, otherwise empty.
+     */
     @Override
-    public Optional<User> findByID(int id) {return userRepository.findById(id);}
+    public Optional<User> findByID(int id) {
+        return userRepository.findById(id);
+    }
 
+    /**
+     * Deletes a user by their ID.
+     *
+     * @param id The ID of the user to delete.
+     * @return True if the user was successfully deleted, false otherwise.
+     */
     @Override
     public boolean deleteUser(int id) {
         Optional<User> u = findByID(id);
@@ -37,10 +62,7 @@ public class UserServiceImpl implements UserService {
             User user = u.get();
             userRepository.delete(user);
             return true;
-            //String displayName = pageDetail.map(PageDetail::getName).orElse(uri);
         }
         return false;
     }
-
-
 }
