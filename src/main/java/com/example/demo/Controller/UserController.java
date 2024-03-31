@@ -7,13 +7,17 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Controller class for managing User entities.
+ */
+
 @RestController
 @RequestMapping("/user")
 public class UserController {
 
     @Autowired
     private UserService userService;
-    @PostMapping("/add")
+    @PutMapping("/add")
     public String addUser(@RequestBody User user){
         userService.saveUser(user);
         return "New user added";
@@ -25,13 +29,6 @@ public class UserController {
     }
     @DeleteMapping("/deleteUser")
     public String deleteUser(@RequestBody int id){
-//        int ID;
-//        try{
-//            ID = Integer.parseInt(id);
-//        }catch(Exception e){
-//            e.printStackTrace();
-//            return "id not a number";
-//        }
         if(userService.deleteUser(id)){
             return "User deleted successfully";
         }else{

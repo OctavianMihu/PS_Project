@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Implementation of UserService interface providing CRUD operations for User entities.
+ */
 @Service
 public class UserServiceImpl implements UserService {
 

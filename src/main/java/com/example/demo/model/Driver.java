@@ -1,39 +1,44 @@
 package com.example.demo.model;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Entity;
 
-
-
-/**
- * Represents a user entity in the system.
- */
+/**  Represents a driver entity in the system.*/
 @Entity
-public class User {
-
+public class Driver {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int ID;
+    private int id;
+    private String carType;
     private String username;
     private String email;
 
-    public User(int ID, String username, String email) {
-        this.ID = ID;
+    public Driver(int id, String carType, String username, String email) {
+        this.id = id;
+        this.carType = carType;
         this.username = username;
         this.email = email;
     }
 
-    public User(){
+    public Driver() {
     }
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getCarType() {
+        return carType;
+    }
+
+    public void setCarType(String carType) {
+        this.carType = carType;
     }
 
     public String getUsername() {
