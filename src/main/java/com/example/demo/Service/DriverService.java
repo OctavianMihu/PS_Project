@@ -18,8 +18,8 @@ public interface DriverService {
 
     boolean deleteDriver(int id);
 
-    Driver startWork(int id);
-    Driver stopWork(int id);
+    void startWork(int id);
+    void stopWork(int id);
 
 
 }

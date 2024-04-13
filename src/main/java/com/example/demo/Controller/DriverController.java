@@ -56,12 +56,12 @@ public class DriverController {
 
     }
     @PatchMapping("/startWork")
-    public Driver startWork(@RequestBody int id){
-        return driverService.startWork(id);
+    public void startWork(@RequestBody int id){
+        driverService.startWork(id);
     }
     @PatchMapping("/stopWork")
-    public Driver stopWork(@RequestBody int id){
-        return driverService.startWork(id);
+    public void stopWork(@RequestBody int id){
+        driverService.stopWork(id);
     }
 
 }

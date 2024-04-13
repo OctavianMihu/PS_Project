@@ -67,10 +67,20 @@ public class DriverServiceImpl implements DriverService{
     }
 
     @Override
-    public Driver startWork(int id) {
-        return driverRepository.startWork(id);
+    public void startWork(int id) {
+        Optional<Driver> optionalDriver = driverRepository.findById(id);
+        if (optionalDriver.isPresent()){
+            Driver driver = optionalDriver.get();
+            driver.setWorking(true);
+            driverRepository.save(driver);
+        }
     }
-    public Driver stopWork(int id){
-        return driverRepository.stopWork(id);
+    public void stopWork(int id){
+        Optional<Driver> optionalDriver = driverRepository.findById(id);
+        if (optionalDriver.isPresent()){
+            Driver driver = optionalDriver.get();
+            driver.setWorking(false);
+            driverRepository.save(driver);
+        }
     }
 }
