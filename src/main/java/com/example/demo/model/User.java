@@ -18,11 +18,13 @@ public class User {
     private int ID;
     private String username;
     private String email;
+    private boolean wantsRide;
 
-    public User(int ID, String username, String email) {
+    public User(int ID, String username, String email, boolean wantsRide) {
         this.ID = ID;
         this.username = username;
         this.email = email;
+        this.wantsRide = wantsRide;
     }
 
     public User(){
@@ -50,5 +52,13 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public boolean isWantsRide() {
+        return wantsRide;
+    }
+
+    public void setWantsRide(boolean wantsRide) {
+        this.wantsRide = wantsRide;
     }
 }

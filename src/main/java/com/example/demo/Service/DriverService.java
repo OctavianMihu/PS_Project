@@ -10,11 +10,16 @@ import java.util.Optional;
  * Service interface for managing Driver entities.
  */
 public interface DriverService {
-    public Driver saveDriver(Driver driver);
+    Driver saveDriver(Driver driver);
 
     List<Driver> getAllDrivers();
 
-    public Optional<Driver> findByID(int id);
-    public boolean deleteDriver(int id);
+    Optional<Driver> findByID(int id);
+
+    boolean deleteDriver(int id);
+
+    Driver startWork(int id);
+    Driver stopWork(int id);
+
 
 }

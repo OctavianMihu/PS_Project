@@ -65,4 +65,12 @@ public class DriverServiceImpl implements DriverService{
         }
         return false;
     }
+
+    @Override
+    public Driver startWork(int id) {
+        return driverRepository.startWork(id);
+    }
+    public Driver stopWork(int id){
+        return driverRepository.stopWork(id);
+    }
 }

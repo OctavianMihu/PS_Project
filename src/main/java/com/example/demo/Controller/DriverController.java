@@ -47,13 +47,21 @@ public class DriverController {
      * @return A message indicating the result of the deletion operation.
      */
     @DeleteMapping("/deletedriver")
-    public String deleteDRiver(@RequestBody int id){
+    public String deleteDriver(@RequestBody int id){
         if(driverService.deleteDriver(id)){
             return "Driver deleted successfully";
         }else{
             return "Could not find user";
         }
 
+    }
+    @PatchMapping("/startWork")
+    public Driver startWork(@RequestBody int id){
+        return driverService.startWork(id);
+    }
+    @PatchMapping("/stopWork")
+    public Driver stopWork(@RequestBody int id){
+        return driverService.startWork(id);
     }
 
 }

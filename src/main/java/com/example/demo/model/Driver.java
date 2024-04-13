@@ -15,11 +15,15 @@ public class Driver {
     private String username;
     private String email;
 
-    public Driver(int id, String carType, String username, String email) {
+    private boolean isDriving;
+    private boolean isWorking;
+    public Driver(int id, String carType, String username, String email, boolean isDriving, boolean isWorking) {
         this.id = id;
         this.carType = carType;
         this.username = username;
         this.email = email;
+        this.isDriving = isDriving;
+        this.isWorking = isWorking;
     }
 
     public Driver() {
@@ -55,5 +59,21 @@ public class Driver {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public boolean isDriving() {
+        return isDriving;
+    }
+
+    public void setDriving(boolean driving) {
+        isDriving = driving;
+    }
+
+    public boolean isWorking() {
+        return isWorking;
+    }
+
+    public void setWorking(boolean working) {
+        isWorking = working;
     }
 }
