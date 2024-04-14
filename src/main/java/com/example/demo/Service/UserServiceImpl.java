@@ -2,9 +2,11 @@ package com.example.demo.Service;
 
 import com.example.demo.Repo.UserRepository;
 import com.example.demo.model.User;
+import com.example.demo.observer.RideAlertListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -58,11 +60,33 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean deleteUser(int id) {
         Optional<User> u = findByID(id);
-        if(u.isPresent()){
+        if (u.isPresent()) {
             User user = u.get();
             userRepository.delete(user);
             return true;
         }
         return false;
     }
+
+    @Override
+    public void wantsRide(int id) {
+        Optional<User> optionalUser = userRepository.findById(id);
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            user.setWantsRide(true);
+            userRepository.save(user);
+        }
+
+    }
+
+    @Override
+    public void rideOver(int id) {
+        Optional<User> optionalUser = userRepository.findById(id);
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            user.setWantsRide(false);
+            userRepository.save(user);
+        }
+    }
+
 }

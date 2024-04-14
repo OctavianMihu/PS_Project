@@ -53,8 +53,8 @@ public class DriverController {
         }else{
             return "Could not find user";
         }
-
     }
+
     @PatchMapping("/startWork")
     public void startWork(@RequestBody int id){
         driverService.startWork(id);

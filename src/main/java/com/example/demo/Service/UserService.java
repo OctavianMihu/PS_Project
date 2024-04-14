@@ -18,4 +18,8 @@ public interface UserService {
 
     boolean deleteUser(int id);
 
+    void wantsRide(int id);
+    void rideOver(int id);
+
+
 }
