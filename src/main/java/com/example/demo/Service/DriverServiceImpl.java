@@ -4,9 +4,6 @@ import com.example.demo.Repo.DriverRepository;
 
 import com.example.demo.model.Driver;
 import com.example.demo.model.User;
-import com.example.demo.observer.NotificationService;
-import com.example.demo.observer.Observer;
-import com.example.demo.observer.RideAlertListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,10 +19,11 @@ import java.util.Optional;
 public class DriverServiceImpl implements DriverService{
     @Autowired
     private DriverRepository driverRepository;
-    private final Observer obs = new Observer(new NotificationService());
+
+    private final NotificationService notificationService;
 
     public DriverServiceImpl() {
-        this.drivers = new ArrayList<>();
+        this.notificationService = new NotificationService();
     }
 
     /**
@@ -83,22 +81,29 @@ public class DriverServiceImpl implements DriverService{
             Driver driver = optionalDriver.get();
             driver.setWorking(true);
             driverRepository.save(driver);
-            RideAlertListener.addDriver(driver);
+            notificationService.working(new DriverListener(driver.getId()));
         }
     }
-    public void stopWork(int id){
+    public void stopWork(int id) {
         Optional<Driver> optionalDriver = driverRepository.findById(id);
-        if (optionalDriver.isPresent()){
+        if (optionalDriver.isPresent()) {
             Driver driver = optionalDriver.get();
             driver.setWorking(false);
             driverRepository.save(driver);
-            obs.ad
+            notificationService.stoppedWorking(new DriverListener(driver.getId()));
         }
     }
 
-    public void notifyDrivers() {
-       obs.notify();
+    @Override
+    public void sendNotif() {
+        notificationService.sendNotification();
     }
 
+    public NotificationService getNotificationService() {
+        return notificationService;
+    }
 
+    public void workAvailable(){
+        notificationService.sendNotification();
+    }
 }

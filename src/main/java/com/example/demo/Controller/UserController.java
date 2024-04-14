@@ -1,9 +1,8 @@
 package com.example.demo.Controller;
 
+import com.example.demo.Service.NotificationService;
 import com.example.demo.Service.UserService;
 import com.example.demo.model.User;
-import com.example.demo.observer.NotificationService;
-import com.example.demo.observer.Observer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/user")
 public class UserController {
-    Observer observer = new Observer(new NotificationService());
+
     @Autowired
     private UserService userService;
     /**
@@ -59,7 +58,7 @@ public class UserController {
     @PatchMapping("/wantsRide")
     public String wantsRide(@RequestBody int id){
         userService.wantsRide(id);
-        observer.foundWork();
+
         return "Updated user successfully";
     }
 

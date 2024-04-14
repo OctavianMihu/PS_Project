@@ -2,7 +2,6 @@ package com.example.demo.Service;
 
 import com.example.demo.Repo.UserRepository;
 import com.example.demo.model.User;
-import com.example.demo.observer.RideAlertListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -75,6 +74,7 @@ public class UserServiceImpl implements UserService {
             User user = optionalUser.get();
             user.setWantsRide(true);
             userRepository.save(user);
+
         }
 
     }

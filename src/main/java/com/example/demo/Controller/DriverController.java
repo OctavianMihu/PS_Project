@@ -64,4 +64,8 @@ public class DriverController {
         driverService.stopWork(id);
     }
 
+    @GetMapping("/sendNotif")
+    public void sendNotif(){
+        driverService.sendNotif();
+    }
 }

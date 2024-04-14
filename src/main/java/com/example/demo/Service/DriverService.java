@@ -21,5 +21,6 @@ public interface DriverService {
     void startWork(int id);
     void stopWork(int id);
 
+    void sendNotif();
 
 }
