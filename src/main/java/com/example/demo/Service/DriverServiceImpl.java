@@ -1,22 +1,18 @@
 package com.example.demo.Service;
 
 import com.example.demo.Repo.DriverRepository;
-
 import com.example.demo.model.Driver;
-import com.example.demo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 
 /**
  * Implementation of DriverService interface providing CRUD operations for Driver entities.
  */
 @Service
-public class DriverServiceImpl implements DriverService{
+public class DriverServiceImpl implements DriverService {
     @Autowired
     private DriverRepository driverRepository;
 
@@ -36,6 +32,7 @@ public class DriverServiceImpl implements DriverService{
     public Driver saveDriver(Driver driver) {
         return driverRepository.save(driver);
     }
+
     /**
      * Retrieves a list of all drivers.
      *
@@ -45,6 +42,7 @@ public class DriverServiceImpl implements DriverService{
     public List<Driver> getAllDrivers() {
         return driverRepository.findAll();
     }
+
     /**
      * Finds a driver by their ID.
      *
@@ -65,25 +63,36 @@ public class DriverServiceImpl implements DriverService{
     @Override
     public boolean deleteDriver(int id) {
         Optional<Driver> d = findByID(id);
-        if(d.isPresent()){
+        if (d.isPresent()) {
             Driver driver = d.get();
             driverRepository.delete(driver);
             return true;
-            //String displayName = pageDetail.map(PageDetail::getName).orElse(uri);
         }
         return false;
     }
 
+    /**
+     * Starts the work for a driver identified by ID.
+     *
+     * @param id The ID of the driver to start work.
+     */
     @Override
     public void startWork(int id) {
         Optional<Driver> optionalDriver = driverRepository.findById(id);
-        if (optionalDriver.isPresent()){
+        if (optionalDriver.isPresent()) {
             Driver driver = optionalDriver.get();
             driver.setWorking(true);
             driverRepository.save(driver);
             notificationService.working(new DriverListener(driver.getId()));
         }
     }
+
+    /**
+     * Stops the work for a driver identified by ID.
+     *
+     * @param id The ID of the driver to stop work.
+     */
+    @Override
     public void stopWork(int id) {
         Optional<Driver> optionalDriver = driverRepository.findById(id);
         if (optionalDriver.isPresent()) {
@@ -94,16 +103,28 @@ public class DriverServiceImpl implements DriverService{
         }
     }
 
+    /**
+     * Sends notification to drivers.
+     */
     @Override
     public void sendNotif() {
         notificationService.sendNotification();
     }
 
+    /**
+     * Retrieves the notification service associated with this driver service.
+     *
+     * @return The notification service.
+     */
     public NotificationService getNotificationService() {
         return notificationService;
     }
 
-    public void workAvailable(){
+    /**
+     * Notifies drivers of available work.
+     * Not yet implemented properly
+     */
+    public void workAvailable() {
         notificationService.sendNotification();
     }
 }

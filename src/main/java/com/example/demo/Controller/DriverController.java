@@ -54,16 +54,28 @@ public class DriverController {
             return "Could not find user";
         }
     }
-
+    /**
+     * Handles HTTP PATCH requests to start driver's work.
+     *
+     * @param id The ID of the driver to start work.
+     */
     @PatchMapping("/startWork")
     public void startWork(@RequestBody int id){
         driverService.startWork(id);
     }
+    /**
+     * Handles HTTP PATCH requests to stop driver's work.
+     *
+     * @param id The ID of the driver to stop work.
+     */
     @PatchMapping("/stopWork")
     public void stopWork(@RequestBody int id){
         driverService.stopWork(id);
     }
 
+    /**
+     * Handles HTTP GET requests to send notification to drivers.
+     */
     @GetMapping("/sendNotif")
     public void sendNotif(){
         driverService.sendNotif();

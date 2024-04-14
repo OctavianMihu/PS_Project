@@ -55,10 +55,15 @@ public class UserController {
         }
     }
 
+    /**
+     * Updates the wantsRide status for a user identified by ID.
+     *
+     * @param id The ID of the user to update.
+     * @return A message indicating the result of the update operation.
+     */
     @PatchMapping("/wantsRide")
     public String wantsRide(@RequestBody int id){
         userService.wantsRide(id);
-
         return "Updated user successfully";
     }
 

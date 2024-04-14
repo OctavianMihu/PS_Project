@@ -5,7 +5,6 @@ import com.example.demo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -67,6 +66,11 @@ public class UserServiceImpl implements UserService {
         return false;
     }
 
+    /**
+     * Notifies the system that a user wants a ride.
+     *
+     * @param id The ID of the user who wants a ride.
+     */
     @Override
     public void wantsRide(int id) {
         Optional<User> optionalUser = userRepository.findById(id);
@@ -74,11 +78,14 @@ public class UserServiceImpl implements UserService {
             User user = optionalUser.get();
             user.setWantsRide(true);
             userRepository.save(user);
-
         }
-
     }
 
+    /**
+     * Notifies the system that a ride is over for a user.
+     * Not yet properly implemented
+     * @param id The ID of the user for whom the ride is over.
+     */
     @Override
     public void rideOver(int id) {
         Optional<User> optionalUser = userRepository.findById(id);
@@ -88,5 +95,4 @@ public class UserServiceImpl implements UserService {
             userRepository.save(user);
         }
     }
-
 }
