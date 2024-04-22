@@ -14,7 +14,6 @@ public class Driver {
     private String carType;
     private String username;
     private String email;
-
     private boolean isDriving;
     private boolean isWorking;
     public Driver(int id, String carType, String username, String email, boolean isDriving, boolean isWorking) {
@@ -76,4 +75,6 @@ public class Driver {
     public void setWorking(boolean working) {
         isWorking = working;
     }
+
+
 }
