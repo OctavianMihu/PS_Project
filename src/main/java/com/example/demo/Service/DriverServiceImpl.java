@@ -1,6 +1,6 @@
-package com.example.demo.Service;
+package com.example.demo.service;
 
-import com.example.demo.Repo.DriverRepository;
+import com.example.demo.repo.DriverRepository;
 import com.example.demo.model.Driver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,10 +15,10 @@ import java.util.Optional;
 public class DriverServiceImpl implements DriverService {
     @Autowired
     private DriverRepository driverRepository;
-
     private final NotificationService notificationService;
 
-    public DriverServiceImpl() {
+    public DriverServiceImpl(DriverRepository driverRepository) {
+        this.driverRepository = driverRepository;
         this.notificationService = new NotificationService();
     }
 

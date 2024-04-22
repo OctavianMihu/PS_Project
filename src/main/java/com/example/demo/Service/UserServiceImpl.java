@@ -1,6 +1,6 @@
-package com.example.demo.Service;
+package com.example.demo.service;
 
-import com.example.demo.Repo.UserRepository;
+import com.example.demo.repo.UserRepository;
 import com.example.demo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,8 +14,12 @@ import java.util.Optional;
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired
+    //@Autowired
     private UserRepository userRepository;
+
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     /**
      * Saves a user entity.
@@ -23,6 +27,7 @@ public class UserServiceImpl implements UserService {
      * @param user The user object to be saved.
      * @return The saved user object.
      */
+
     @Override
     public User saveUser(User user) {
         return userRepository.save(user);
@@ -72,13 +77,15 @@ public class UserServiceImpl implements UserService {
      * @param id The ID of the user who wants a ride.
      */
     @Override
-    public void wantsRide(int id) {
+    public boolean wantsRide(int id) {
         Optional<User> optionalUser = userRepository.findById(id);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
             user.setWantsRide(true);
             userRepository.save(user);
+            return true;
         }
+        return false;
     }
 
     /**

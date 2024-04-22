@@ -1,4 +1,4 @@
-package com.example.demo.Service;
+package com.example.demo.service;
 
 import com.example.demo.model.User;
 
@@ -46,7 +46,7 @@ public interface UserService {
      *
      * @param id The ID of the user who wants a ride.
      */
-    void wantsRide(int id);
+    boolean wantsRide(int id);
 
     /**
      * Notifies the system that a ride is over for a user.
